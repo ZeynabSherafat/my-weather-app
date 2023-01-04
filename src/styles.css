@@ -1,0 +1,84 @@
+@import url("https://fonts.googleapis.com/css2?family=Indie+Flower&family=Patrick+Hand&display=swap");
+body {
+  background: linear-gradient(
+    109.6deg,
+    rgb(36, 45, 57) 11.2%,
+    rgb(16, 37, 60) 51.2%,
+    rgb(0, 0, 0) 98.6%
+  );
+
+  font-family: "Patrick Hand", cursive;
+}
+h1 {
+  font-size: 50px;
+  color: white;
+}
+h2 {
+  color: white;
+}
+hr {
+  color: white;
+}
+#max {
+  color: white;
+}
+#min {
+  color: white;
+}
+
+.box {
+  border: none;
+  border-radius: 8px;
+  margin: 52px auto;
+  padding: 15px 25px;
+  max-width: 650px;
+  box-shadow: 2px 3px 8px black;
+  background-image: url("https://s3.amazonaws.com/shecodesio-production/uploads/files/000/058/938/original/mount.jpg?1671118583");
+  background-size: 920px;
+}
+
+.form-control {
+  display: inline;
+  max-width: 400px;
+  margin-top: 10px;
+}
+
+.btn {
+  margin-top: -4px;
+  padding: 6px 20px;
+}
+
+#current {
+  position: relative;
+  left: 488px;
+  top: -33px;
+  color: white;
+}
+.current-temperature {
+  text-align: center;
+  font-size: 100px;
+  font-weight: 400;
+  color: white;
+}
+.current-weather {
+  color: white;
+}
+.max-min {
+  font-size: 30px;
+  font-weight: 400;
+  color: white;
+}
+.left-heading {
+  text-align: left;
+}
+.days {
+  font-size: 25px;
+  color: white;
+}
+.week {
+  font-size: 20px;
+  color: white;
+}
+.numbers {
+  color: white;
+}
