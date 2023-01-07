@@ -82,3 +82,12 @@ hr {
 .numbers {
   color: white;
 }
+.below {
+  color: white;
+  text-align: center;
+  margin-right: 425px;
+  margin-top: -43px;
+}
+#git {
+  text-decoration: none;
+}
