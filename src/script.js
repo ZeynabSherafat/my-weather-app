@@ -28,15 +28,14 @@ currentTime.innerHTML = `${hour}:${minutes}`;
 function showDefaultTemp(response) {
   console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
-  defaultTemperature.innerHTML = `${Math.round(response.data.main.temp)}°`;
-  let minTemp = document.querySelector("#min");
-  minTemp.innerHTML = `${Math.floor(response.data.main.temp_min)}°`;
-  let maxTemp = document.querySelector("#max");
-  maxTemp.innerHTML = `${Math.ceil(response.data.main.temp_max)}°`;
+  defaultTemperature.innerHTML = `${Math.round(
+    response.data.temperature.current
+  )}°`;
+
   let description = document.querySelector("#description");
-  description.innerHTML = response.data.weather[0].description;
+  description.innerHTML = response.data.condition.description;
 }
-let karajUrl = `https://api.openweathermap.org/data/2.5/weather?q=karaj&appid=f3887e262c88d1158f7e2ef4998e234c&units=metric`;
+let karajUrl = `https://api.shecodes.io/weather/v1/current?query=karaj&key=43481de94f2308f8b87ao0b4t918ca5a`;
 axios.get(karajUrl).then(showDefaultTemp);
 
 // Search engine
@@ -45,20 +44,17 @@ function getData(event) {
   event.preventDefault();
   function showTemp(response) {
     let mainTemp = document.querySelector("#the-degree");
-    mainTemp.innerHTML = `${Math.round(response.data.main.temp)}°`;
-    let minTemp = document.querySelector("#min");
-    minTemp.innerHTML = `${Math.floor(response.data.main.temp_min)}°`;
-    let maxTemp = document.querySelector("#max");
-    maxTemp.innerHTML = `${Math.ceil(response.data.main.temp_max)}°`;
+    mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
+
     let description = document.querySelector("#description");
-    description.innerHTML = response.data.weather[0].description;
+    description.innerHTML = response.data.condition.description;
     let replace = document.querySelector("h1");
-    replace.innerHTML = response.data.name;
+    replace.innerHTML = response.data.city;
   }
 
   let cityName = document.querySelector("#city");
   let city = cityName.value;
-  let cityUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=f3887e262c88d1158f7e2ef4998e234c&units=metric`;
+  let cityUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=43481de94f2308f8b87ao0b4t918ca5a`;
   axios.get(cityUrl).then(showTemp);
 }
 let form = document.querySelector("#form");
@@ -74,17 +70,14 @@ function buttonFunction() {
 
     function showCurrentTemperature(response) {
       let currentCity = document.querySelector("h1");
-      currentCity.innerHTML = response.data.name;
+      currentCity.innerHTML = response.data.city;
       let mainTemp = document.querySelector("#the-degree");
-      mainTemp.innerHTML = `${Math.round(response.data.main.temp)}°`;
-      let minTemp = document.querySelector("#min");
-      minTemp.innerHTML = `${Math.floor(response.data.main.temp_min)}°`;
-      let maxTemp = document.querySelector("#max");
-      maxTemp.innerHTML = `${Math.ceil(response.data.main.temp_max)}°`;
+      mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
+
       let description = document.querySelector("#description");
-      description.innerHTML = response.data.weather[0].description;
+      description.innerHTML = response.data.condition.description;
     }
-    let apiUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=f3887e262c88d1158f7e2ef4998e234c&units=metric`;
+    let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
     axios.get(apiUrl).then(showCurrentTemperature);
   }
   navigator.geolocation.getCurrentPosition(showCurrentLocation);
