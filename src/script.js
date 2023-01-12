@@ -31,9 +31,13 @@ function showDefaultTemp(response) {
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
   )}°`;
-
   let description = document.querySelector("#description");
   description.innerHTML = response.data.condition.description;
+  let icon = document.querySelector("#icon");
+  icon.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 }
 let karajUrl = `https://api.shecodes.io/weather/v1/current?query=karaj&key=43481de94f2308f8b87ao0b4t918ca5a`;
 axios.get(karajUrl).then(showDefaultTemp);
@@ -50,6 +54,11 @@ function getData(event) {
     description.innerHTML = response.data.condition.description;
     let replace = document.querySelector("h1");
     replace.innerHTML = response.data.city;
+    let icon = document.querySelector("#icon");
+    icon.setAttribute(
+      "src",
+      `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+    );
   }
 
   let cityName = document.querySelector("#city");
@@ -73,9 +82,13 @@ function buttonFunction() {
       currentCity.innerHTML = response.data.city;
       let mainTemp = document.querySelector("#the-degree");
       mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
-
       let description = document.querySelector("#description");
       description.innerHTML = response.data.condition.description;
+      let icon = document.querySelector("#icon");
+      icon.setAttribute(
+        "src",
+        `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+      );
     }
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
     axios.get(apiUrl).then(showCurrentTemperature);
