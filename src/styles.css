@@ -86,18 +86,26 @@ hr {
 }
 
 #width {
-  width: 25%;
-  margin-left: -3.5%;
+  width: 30%;
+  margin-left: -5%;
   text-align: center;
+  margin-top: -3%;
+}
+
+#windspeed {
+  color: white;
+  line-height: 1;
 }
 
 #git {
   text-decoration: none;
 }
+
 #celsius {
   color: white;
   text-decoration: none;
 }
+
 #fahrenheit {
   color: white;
   text-decoration: none;

@@ -26,6 +26,7 @@ currentTime.innerHTML = `${hour}:${minutes}`;
 // Default city and temperature
 
 function showDefaultTemp(response) {
+  console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
@@ -37,7 +38,8 @@ function showDefaultTemp(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
-
+  let windSpeed = document.querySelector("#windspeed-number");
+  windSpeed.innerHTML = Math.round(response.data.wind.speed);
   function showFahrenheitDefault() {
     defaultTemperature.innerHTML = `${Math.round(
       response.data.temperature.current * (9 / 5) + 32
@@ -74,6 +76,8 @@ function getData(event) {
       "src",
       `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
     );
+    let windSpeed = document.querySelector("#windspeed-number");
+    windSpeed.innerHTML = Math.round(response.data.wind.speed);
     function showFahrenheitUser() {
       mainTemp.innerHTML = `${Math.round(
         response.data.temperature.current * (9 / 5) + 32
@@ -116,6 +120,8 @@ function buttonFunction() {
         "src",
         `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
       );
+      let windSpeed = document.querySelector("#windspeed-number");
+      windSpeed.innerHTML = Math.round(response.data.wind.speed);
       function showFahrenheitCurrent() {
         mainTemp.innerHTML = `${Math.round(
           response.data.temperature.current * (9 / 5) + 32
