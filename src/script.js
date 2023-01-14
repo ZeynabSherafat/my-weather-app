@@ -26,7 +26,6 @@ currentTime.innerHTML = `${hour}:${minutes}`;
 // Default city and temperature
 
 function showDefaultTemp(response) {
-  console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
@@ -104,7 +103,6 @@ function buttonFunction() {
   function showCurrentLocation(position) {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
-    console.log(position);
 
     function showCurrentTemperature(response) {
       let currentCity = document.querySelector("h1");
