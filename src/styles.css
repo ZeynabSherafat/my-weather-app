@@ -19,12 +19,6 @@ h2 {
 hr {
   color: white;
 }
-#celsius {
-  color: white;
-}
-#fahrenheit {
-  color: white;
-}
 
 .box {
   border: none;
@@ -69,6 +63,7 @@ hr {
   font-weight: 400;
   color: white;
 }
+
 .left-heading {
   text-align: left;
 }
@@ -89,6 +84,7 @@ hr {
   margin-right: 425px;
   margin-top: -43px;
 }
+
 #width {
   width: 25%;
   margin-left: -3.5%;
@@ -96,5 +92,13 @@ hr {
 }
 
 #git {
+  text-decoration: none;
+}
+#celsius {
+  color: white;
+  text-decoration: none;
+}
+#fahrenheit {
+  color: white;
   text-decoration: none;
 }
