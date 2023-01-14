@@ -19,10 +19,10 @@ h2 {
 hr {
   color: white;
 }
-#max {
+#celsius {
   color: white;
 }
-#min {
+#fahrenheit {
   color: white;
 }
 
@@ -64,7 +64,7 @@ hr {
   color: white;
   line-height: 1px;
 }
-.max-min {
+.celsius-fahrenheit {
   font-size: 30px;
   font-weight: 400;
   color: white;

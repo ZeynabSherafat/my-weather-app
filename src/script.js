@@ -38,6 +38,22 @@ function showDefaultTemp(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+
+  function showFahrenheitDefault() {
+    defaultTemperature.innerHTML = `${Math.round(
+      response.data.temperature.current * (9 / 5) + 32
+    )}°`;
+  }
+  function showCelsiusDefault() {
+    defaultTemperature.innerHTML = `${Math.round(
+      response.data.temperature.current
+    )}°`;
+  }
+
+  let fahrenheit = document.querySelector("#fahrenheit");
+  fahrenheit.addEventListener("click", showFahrenheitDefault);
+  let celsius = document.querySelector("#celsius");
+  celsius.addEventListener("click", showCelsiusDefault);
 }
 let karajUrl = `https://api.shecodes.io/weather/v1/current?query=karaj&key=43481de94f2308f8b87ao0b4t918ca5a`;
 axios.get(karajUrl).then(showDefaultTemp);
@@ -59,6 +75,19 @@ function getData(event) {
       "src",
       `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
     );
+    function showFahrenheitUser() {
+      mainTemp.innerHTML = `${Math.round(
+        response.data.temperature.current * (9 / 5) + 32
+      )}°`;
+    }
+    function showCelsiusUser() {
+      mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
+    }
+
+    let fahrenheit = document.querySelector("#fahrenheit");
+    fahrenheit.addEventListener("click", showFahrenheitUser);
+    let celsius = document.querySelector("#celsius");
+    celsius.addEventListener("click", showCelsiusUser);
   }
 
   let cityName = document.querySelector("#city");
@@ -89,6 +118,21 @@ function buttonFunction() {
         "src",
         `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
       );
+      function showFahrenheitCurrent() {
+        mainTemp.innerHTML = `${Math.round(
+          response.data.temperature.current * (9 / 5) + 32
+        )}°`;
+      }
+      function showCelsiusCurrent() {
+        mainTemp.innerHTML = `${Math.round(
+          response.data.temperature.current
+        )}°`;
+      }
+
+      let fahrenheit = document.querySelector("#fahrenheit");
+      fahrenheit.addEventListener("click", showFahrenheitCurrent);
+      let celsius = document.querySelector("#celsius");
+      celsius.addEventListener("click", showCelsiusCurrent);
     }
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
     axios.get(apiUrl).then(showCurrentTemperature);
