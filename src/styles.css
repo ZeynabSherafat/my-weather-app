@@ -71,18 +71,21 @@ hr {
   font-size: 25px;
   color: white;
 }
-.week {
+.day {
   font-size: 20px;
   color: white;
 }
-.numbers {
-  color: white;
-}
+
 .below {
   color: white;
   text-align: center;
   margin-right: 425px;
   margin-top: -43px;
+}
+
+.weather-forecast {
+  color: white;
+  text-align: center;
 }
 
 #width {

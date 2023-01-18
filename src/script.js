@@ -23,6 +23,25 @@ if (minutes < 10) {
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = `${hour}:${minutes}`;
 
+// The weather forecast
+function weatherForecast() {
+  let forecast = document.querySelector(".weather-forecast");
+  let forecastElement = ` <div class="row">`;
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+  days.forEach(function (day) {
+    forecastElement =
+      forecastElement +
+      `<div class="col-2">
+              <div class="day">${day}</div>
+              <div class="icon"><img src="img/cloudy.png" alt="cloudy" /></div>
+              <div class="temperature-forecast">11° / 3°</div>
+            </div>`;
+  });
+  forecastElement = forecastElement + `</div>`;
+  forecast.innerHTML = forecastElement;
+}
+weatherForecast();
+
 // Default city and temperature
 
 function showDefaultTemp(response) {
