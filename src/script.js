@@ -163,6 +163,43 @@ function buttonFunction() {
     let latitude = position.coords.latitude;
     let longitude = position.coords.longitude;
 
+    function formatCurrentLocationDay(dayNumber) {
+      let date = new Date(dayNumber * 1000);
+      let day = date.getDay();
+      let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+      return days[day];
+    }
+    function showCurrentLocationForecast(response) {
+      console.log(response.data.daily);
+      let forecastData = response.data.daily;
+      let forecast = document.querySelector(".weather-forecast");
+      let forecastElement = ` <div class="row">`;
+      forecastData.forEach(function (forecastInfo, index) {
+        if (index < 6) {
+          forecastElement =
+            forecastElement +
+            `<div class="col-2">
+              <div class="day">${formatCurrentLocationDay(
+                forecastInfo.time
+              )}</div>
+              <div class="icon"><img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastInfo.condition.icon
+              }.png alt="cloudy" width="60" " /></div>
+              <div class="temperature-forecast"><span id="maximumTemperature">${Math.round(
+                forecastInfo.temperature.maximum
+              )}°</span> / <span id="minimumTemperature">${Math.round(
+              forecastInfo.temperature.minimum
+            )}°</span></div>
+            </div>`;
+        }
+      });
+      forecastElement = forecastElement + `</div>`;
+      forecast.innerHTML = forecastElement;
+    }
+
+    let currentLocationForecastUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${longitude}&lat=${latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
+    axios.get(currentLocationForecastUrl).then(showCurrentLocationForecast);
+
     function showCurrentTemperature(response) {
       let currentCity = document.querySelector("h1");
       currentCity.innerHTML = response.data.city;
