@@ -32,7 +32,6 @@ function formatKarajDay(dayNumber) {
   return days[day];
 }
 function showKarajForecast(response) {
-  console.log(response.data.daily);
   let forecastData = response.data.daily;
   let forecast = document.querySelector(".weather-forecast");
   let forecastElement = ` <div class="row">`;
@@ -61,7 +60,6 @@ let karajForecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=karaj&
 axios.get(karajForecastUrl).then(showKarajForecast);
 
 function showDefaultTemp(response) {
-  console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
@@ -87,7 +85,6 @@ function getData(event) {
   event.preventDefault();
 
   function weatherForecast(response) {
-    console.log(response.data.daily);
     let forecastData = response.data.daily;
     let forecast = document.querySelector(".weather-forecast");
     let forecastElement = ` <div class="row">`;
@@ -170,7 +167,6 @@ function buttonFunction() {
       return days[day];
     }
     function showCurrentLocationForecast(response) {
-      console.log(response.data.daily);
       let forecastData = response.data.daily;
       let forecast = document.querySelector(".weather-forecast");
       let forecastElement = ` <div class="row">`;
