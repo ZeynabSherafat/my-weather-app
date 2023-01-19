@@ -23,29 +23,9 @@ if (minutes < 10) {
 let currentTime = document.querySelector("#current-time");
 currentTime.innerHTML = `${hour}:${minutes}`;
 
-// The weather forecast
-function weatherForecast() {
-  let forecast = document.querySelector(".weather-forecast");
-  let forecastElement = ` <div class="row">`;
-  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
-  days.forEach(function (day) {
-    forecastElement =
-      forecastElement +
-      `<div class="col-2">
-              <div class="day">${day}</div>
-              <div class="icon"><img src="img/cloudy.png" alt="cloudy" /></div>
-              <div class="temperature-forecast">11° / 3°</div>
-            </div>`;
-  });
-  forecastElement = forecastElement + `</div>`;
-  forecast.innerHTML = forecastElement;
-}
-weatherForecast();
-
 // Default city and temperature
 
 function showDefaultTemp(response) {
-  console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
@@ -82,7 +62,32 @@ axios.get(karajUrl).then(showDefaultTemp);
 
 function getData(event) {
   event.preventDefault();
+
+  function weatherForecast(response) {
+    console.log(response.data.daily);
+    let forecast = document.querySelector(".weather-forecast");
+    let forecastElement = ` <div class="row">`;
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
+    days.forEach(function (day) {
+      forecastElement =
+        forecastElement +
+        `<div class="col-2">
+              <div class="day">${day}</div>
+              <div class="icon"><img src="img/cloudy.png" alt="cloudy" /></div>
+              <div class="temperature-forecast"><span id="minimumTemperature">11°</span> / <span id="maximumTemperature">3°</span></div>
+            </div>`;
+    });
+    forecastElement = forecastElement + `</div>`;
+    forecast.innerHTML = forecastElement;
+  }
+
+  function getForecastCoordinates(coordinates) {
+    //console.log(coordinates);
+    let forecastUrl = `https://api.shecodes.io/weather/v1/forecast?lon=${coordinates.longitude}&lat=${coordinates.latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
+    axios.get(forecastUrl).then(weatherForecast);
+  }
   function showTemp(response) {
+    //console.log(response.data.coordinates);
     let mainTemp = document.querySelector("#the-degree");
     mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
 
@@ -110,6 +115,7 @@ function getData(event) {
     fahrenheit.addEventListener("click", showFahrenheitUser);
     let celsius = document.querySelector("#celsius");
     celsius.addEventListener("click", showCelsiusUser);
+    getForecastCoordinates(response.data.coordinates);
   }
 
   let cityName = document.querySelector("#city");
@@ -119,6 +125,8 @@ function getData(event) {
 }
 let form = document.querySelector("#form");
 form.addEventListener("submit", getData);
+
+//weatherForecast();
 
 // Current location and temperature
 
