@@ -42,26 +42,16 @@ hr {
   padding: 6px 20px;
 }
 
-#current {
-  position: relative;
-  left: 488px;
-  top: -33px;
-  color: white;
-}
 .current-temperature {
   text-align: center;
   font-size: 100px;
   font-weight: 400;
   color: white;
 }
+
 .current-weather {
   color: white;
   line-height: 1px;
-}
-.celsius-fahrenheit {
-  font-size: 30px;
-  font-weight: 400;
-  color: white;
 }
 
 .left-heading {
@@ -88,28 +78,33 @@ hr {
   text-align: center;
 }
 
+.temperature {
+  margin-top: 10px;
+}
+
+#current {
+  position: relative;
+  left: 488px;
+  top: -33px;
+  color: white;
+}
+
 #width {
   width: 30%;
-  margin-left: -5%;
+  margin-left: -7%;
   text-align: center;
-  margin-top: -3%;
+  margin-top: -8px;
+  margin-bottom: -20px;
 }
 
 #windspeed {
   color: white;
-  line-height: 1;
+  margin-top: -20px;
+}
+#humidity {
+  color: white;
 }
 
 #git {
-  text-decoration: none;
-}
-
-#celsius {
-  color: white;
-  text-decoration: none;
-}
-
-#fahrenheit {
-  color: white;
   text-decoration: none;
 }

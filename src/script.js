@@ -25,7 +25,43 @@ currentTime.innerHTML = `${hour}:${minutes}`;
 
 // Default city and temperature
 
+function formatKarajDay(dayNumber) {
+  let date = new Date(dayNumber * 1000);
+  let day = date.getDay();
+  let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+  return days[day];
+}
+function showKarajForecast(response) {
+  console.log(response.data.daily);
+  let forecastData = response.data.daily;
+  let forecast = document.querySelector(".weather-forecast");
+  let forecastElement = ` <div class="row">`;
+  forecastData.forEach(function (forecastInfo, index) {
+    if (index < 6) {
+      forecastElement =
+        forecastElement +
+        `<div class="col-2">
+              <div class="day">${formatKarajDay(forecastInfo.time)}</div>
+              <div class="icon"><img src=http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${
+                forecastInfo.condition.icon
+              }.png alt="cloudy" width="60" " /></div>
+              <div class="temperature-forecast"><span id="maximumTemperature">${Math.round(
+                forecastInfo.temperature.maximum
+              )}°</span> / <span id="minimumTemperature">${Math.round(
+          forecastInfo.temperature.minimum
+        )}°</span></div>
+            </div>`;
+    }
+  });
+  forecastElement = forecastElement + `</div>`;
+  forecast.innerHTML = forecastElement;
+}
+
+let karajForecastUrl = `https://api.shecodes.io/weather/v1/forecast?query=karaj&key=43481de94f2308f8b87ao0b4t918ca5a`;
+axios.get(karajForecastUrl).then(showKarajForecast);
+
 function showDefaultTemp(response) {
+  console.log(response);
   let defaultTemperature = document.querySelector("#the-degree");
   defaultTemperature.innerHTML = `${Math.round(
     response.data.temperature.current
@@ -39,21 +75,8 @@ function showDefaultTemp(response) {
   );
   let windSpeed = document.querySelector("#windspeed-number");
   windSpeed.innerHTML = Math.round(response.data.wind.speed);
-  function showFahrenheitDefault() {
-    defaultTemperature.innerHTML = `${Math.round(
-      response.data.temperature.current * (9 / 5) + 32
-    )}°`;
-  }
-  function showCelsiusDefault() {
-    defaultTemperature.innerHTML = `${Math.round(
-      response.data.temperature.current
-    )}°`;
-  }
-
-  let fahrenheit = document.querySelector("#fahrenheit");
-  fahrenheit.addEventListener("click", showFahrenheitDefault);
-  let celsius = document.querySelector("#celsius");
-  celsius.addEventListener("click", showCelsiusDefault);
+  let humidity = document.querySelector("#humidity-number");
+  humidity.innerHTML = Math.round(response.data.temperature.humidity);
 }
 let karajUrl = `https://api.shecodes.io/weather/v1/current?query=karaj&key=43481de94f2308f8b87ao0b4t918ca5a`;
 axios.get(karajUrl).then(showDefaultTemp);
@@ -68,7 +91,6 @@ function getData(event) {
     let forecastData = response.data.daily;
     let forecast = document.querySelector(".weather-forecast");
     let forecastElement = ` <div class="row">`;
-    //let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri"];
 
     forecastData.forEach(function (forecastInfo, index) {
       if (index < 6) {
@@ -95,7 +117,6 @@ function getData(event) {
     let date = new Date(dayNumber * 1000);
     let day = date.getDay();
     let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
     return days[day];
   }
 
@@ -120,19 +141,8 @@ function getData(event) {
     );
     let windSpeed = document.querySelector("#windspeed-number");
     windSpeed.innerHTML = Math.round(response.data.wind.speed);
-    function showFahrenheitUser() {
-      mainTemp.innerHTML = `${Math.round(
-        response.data.temperature.current * (9 / 5) + 32
-      )}°`;
-    }
-    function showCelsiusUser() {
-      mainTemp.innerHTML = `${Math.round(response.data.temperature.current)}°`;
-    }
-
-    let fahrenheit = document.querySelector("#fahrenheit");
-    fahrenheit.addEventListener("click", showFahrenheitUser);
-    let celsius = document.querySelector("#celsius");
-    celsius.addEventListener("click", showCelsiusUser);
+    let humidity = document.querySelector("#humidity-number");
+    humidity.innerHTML = Math.round(response.data.temperature.humidity);
     getForecastCoordinates(response.data.coordinates);
   }
 
@@ -167,21 +177,8 @@ function buttonFunction() {
       );
       let windSpeed = document.querySelector("#windspeed-number");
       windSpeed.innerHTML = Math.round(response.data.wind.speed);
-      function showFahrenheitCurrent() {
-        mainTemp.innerHTML = `${Math.round(
-          response.data.temperature.current * (9 / 5) + 32
-        )}°`;
-      }
-      function showCelsiusCurrent() {
-        mainTemp.innerHTML = `${Math.round(
-          response.data.temperature.current
-        )}°`;
-      }
-
-      let fahrenheit = document.querySelector("#fahrenheit");
-      fahrenheit.addEventListener("click", showFahrenheitCurrent);
-      let celsius = document.querySelector("#celsius");
-      celsius.addEventListener("click", showCelsiusCurrent);
+      let humidity = document.querySelector("#humidity-number");
+      humidity.innerHTML = Math.round(response.data.temperature.humidity);
     }
     let apiUrl = `https://api.shecodes.io/weather/v1/current?lon=${longitude}&lat=${latitude}&key=43481de94f2308f8b87ao0b4t918ca5a`;
     axios.get(apiUrl).then(showCurrentTemperature);

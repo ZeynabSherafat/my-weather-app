@@ -48,18 +48,19 @@
                 <div id="width">
                   <img src="" alt="almost cloudy" id="icon" />
                   <p class="current-weather" id="description"></p>
-                  <div id="windspeed">
-                    windspeed: <span id="windspeed-number"></span> km/h
-                  </div>
                 </div>
               </div>
             </div>
-            <div class="col-3 temperature">
-              <div class="current-temperature">
-                <span id="the-degree"></span>
-                <div class="celsius-fahrenheit">
-                  <a href="#" id="celsius">C </a> |
-                  <a href="#" id="fahrenheit"> F</a>
+            <div class="col-3">
+              <div class="temperature">
+                <div class="current-temperature">
+                  <span id="the-degree"></span>
+                </div>
+                <div id="windspeed">
+                  Windspeed: <span id="windspeed-number"></span> km/h
+                </div>
+                <div id="humidity">
+                  Humidity: <span id="humidity-number"></span>%
                 </div>
               </div>
             </div>
@@ -68,13 +69,7 @@
         <br />
         <p class="days">Days</p>
         <hr />
-        <div class="weather-forecast">
-          <div class="col-2">
-            <div class="day">Sat</div>
-            <div class="icon"><img src="img/cloudy.png" alt="cloudy" /></div>
-            <div class="temperature-forecast">11° / 3°</div>
-          </div>
-        </div>
+        <div class="weather-forecast"></div>
       </div>
       <p class="below">
         <a
